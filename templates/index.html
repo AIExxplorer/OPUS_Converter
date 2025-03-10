@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPUS Converter - Conversor de Áudio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <div class="container py-5">
+        <!-- Barra de navegação -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light rounded mb-4">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ url_for('index') }}">
+                    <i class="bi bi-music-note-beamed text-primary"></i> OPUS Converter
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">
+                                <i class="bi bi-house-door"></i> Início
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('about') }}">
+                                <i class="bi bi-info-circle"></i> Sobre
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <header class="text-center mb-5">
+            <h1 class="display-4">OPUS Converter</h1>
+            <p class="lead">Converta seus arquivos OPUS para MP3, WAV, FLAC ou AAC</p>
+        </header>
+
+        {% if not ffmpeg_installed %}
+        <div class="alert alert-warning alert-dismissible fade show mb-4" role="alert">
+            <strong><i class="bi bi-exclamation-triangle-fill"></i> Atenção!</strong> O FFmpeg não foi detectado no seu sistema. O FFmpeg é necessário para a conversão de arquivos.
+            <p class="mt-2 mb-0">Por favor, <a href="https://ffmpeg.org/download.html" target="_blank" class="alert-link">instale o FFmpeg</a> e adicione-o ao PATH do sistema para usar este conversor.</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <form id="uploadForm" enctype="multipart/form-data">
+                            <div class="mb-4">
+                                <label for="fileInput" class="form-label">Selecione até 10 arquivos OPUS</label>
+                                <div class="input-group">
+                                    <input type="file" class="form-control" id="fileInput" name="files[]" accept=".opus" multiple required>
+                                    <button class="btn btn-outline-secondary" type="button" id="clearButton">Limpar</button>
+                                </div>
+                                <div class="form-text">Tamanho máximo: 100MB por arquivo</div>
+                            </div>
+
+                            <div id="fileList" class="mb-4 d-none">
+                                <h5>Arquivos selecionados:</h5>
+                                <ul class="list-group" id="selectedFiles"></ul>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label">Formato de saída</label>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="format" id="formatMp3" value="mp3" checked>
+                                        <label class="form-check-label" for="formatMp3">MP3</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="format" id="formatWav" value="wav">
+                                        <label class="form-check-label" for="formatWav">WAV</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="format" id="formatFlac" value="flac">
+                                        <label class="form-check-label" for="formatFlac">FLAC</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="format" id="formatAac" value="aac">
+                                        <label class="form-check-label" for="formatAac">AAC</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary" id="convertButton">
+                                    <i class="bi bi-arrow-repeat"></i> Converter
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Resultados da conversão -->
+                <div id="resultsCard" class="card shadow-sm mt-4 d-none">
+                    <div class="card-header bg-light">
+                        <h5 class="card-title mb-0">Resultados da Conversão</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="conversionResults"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Informações sobre o projeto -->
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-light">
+                        <h5 class="card-title mb-0">Sobre o OPUS Converter</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>O que é o formato OPUS?</h6>
+                        <p>OPUS é um formato de áudio de código aberto, livre de royalties, desenvolvido pelo Internet Engineering Task Force (IETF). É especialmente eficiente para streaming de áudio pela internet e comunicação em tempo real.</p>
+                        
+                        <h6>Por que converter arquivos OPUS?</h6>
+                        <p>Embora o OPUS seja um excelente formato, nem todos os dispositivos e aplicativos o suportam. Converter para formatos mais comuns como MP3 ou WAV pode melhorar a compatibilidade.</p>
+                        
+                        <h6>Sobre os formatos de saída:</h6>
+                        <ul>
+                            <li><strong>MP3</strong>: Formato comprimido com perdas, amplamente compatível com quase todos os dispositivos.</li>
+                            <li><strong>WAV</strong>: Formato sem compressão, oferece a melhor qualidade, mas com arquivos maiores.</li>
+                            <li><strong>FLAC</strong>: Formato comprimido sem perdas, mantém a qualidade original em arquivos menores que WAV.</li>
+                            <li><strong>AAC</strong>: Formato comprimido com perdas, geralmente oferece melhor qualidade que MP3 em tamanhos similares.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Incluir o componente de footer -->
+        {% include 'components/footer.html' %}
+    </div>
+
+    <!-- Modal de Carregamento -->
+    <div class="modal fade" id="loadingModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center p-5">
+                    <div class="spinner-border text-primary mb-3" role="status">
+                        <span class="visually-hidden">Carregando...</span>
+                    </div>
+                    <h5>Convertendo seus arquivos...</h5>
+                    <p class="text-muted">Isso pode levar alguns instantes, dependendo do tamanho dos arquivos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Erro -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">Erro</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body" id="errorModalBody">
+                    Ocorreu um erro durante a conversão.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html> 
