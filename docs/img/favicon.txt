@@ -1,0 +1,8 @@
+To create a favicon for the OPUS Converter GitHub Pages demo:
+
+1. Visit a favicon generator website like https://favicon.io/
+2. Create a simple icon with the letter "O" or a music note
+3. Download the generated favicon.ico file
+4. Replace this text file with the downloaded favicon.ico file
+
+For a quick solution, you can use a service like https://favicon.io/favicon-generator/ to create a text-based favicon with the letter "O" in a blue color (#0d6efd) to match the application's color scheme. 
