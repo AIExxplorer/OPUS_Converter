@@ -4,6 +4,10 @@
 
 OPUS Converter é uma aplicação web que permite converter arquivos de áudio do formato OPUS para outros formatos populares, como MP3, WAV, FLAC e AAC. Esta ferramenta foi desenvolvida para facilitar a conversão de múltiplos arquivos simultaneamente, oferecendo uma interface simples e intuitiva.
 
+## Demonstração Online
+
+Uma versão de demonstração estática está disponível em [GitHub Pages](https://aiexxplererr.github.io/opus-converter/). Esta versão é apenas para fins de demonstração e não realiza conversões reais. Para a funcionalidade completa, siga as instruções de instalação abaixo.
+
 ## Características Principais
 
 - Conversão de arquivos OPUS para MP3, WAV, FLAC e AAC
