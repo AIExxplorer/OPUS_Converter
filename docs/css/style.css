@@ -475,7 +475,8 @@ footer .text-muted {
 }
 
 [data-theme="dark"] .navbar-light .navbar-toggler {
-    border-color: #495057;
+    border-color: #e9ecef;
+    color: #e9ecef;
 }
 
 /* Ajustes para o texto de seleção de arquivo no tema escuro */
@@ -493,13 +494,160 @@ footer .text-muted {
 /* Ajustes para o texto de descrição dos formatos no tema escuro */
 [data-theme="dark"] .card-body h6 {
     color: #e9ecef;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
 }
 
 [data-theme="dark"] .card-body p {
     color: #e9ecef;
+    font-weight: 400;
 }
 
 /* Ajustes para o texto de descrição dos formatos no tema escuro */
-[data-theme="dark"] .card-body ul li strong {
+[data-theme="dark"] .card-body ul li {
     color: #e9ecef;
+    margin-bottom: 0.5rem;
+}
+
+[data-theme="dark"] .card-body ul li strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Melhorar a visibilidade dos textos de formulário no tema escuro */
+[data-theme="dark"] .form-label {
+    color: #e9ecef;
+    font-weight: 500;
+}
+
+[data-theme="dark"] .form-text {
+    color: #ced4da !important;
+    font-weight: 400;
+}
+
+[data-theme="dark"] .form-check-label {
+    color: #e9ecef;
+    font-weight: 400;
+}
+
+/* Ajustes adicionais para melhorar a visibilidade no tema escuro */
+[data-theme="dark"] .card-title,
+[data-theme="dark"] .card-header h5 {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Melhorar a visibilidade dos textos de formato de saída */
+[data-theme="dark"] .form-check {
+    margin-bottom: 0.5rem;
+}
+
+[data-theme="dark"] .form-check-input:checked + .form-check-label {
+    color: #fff;
+    font-weight: 500;
+}
+
+/* Melhorar a visibilidade dos textos informativos sobre formatos */
+[data-theme="dark"] .card-body ul {
+    padding-left: 1.25rem;
+}
+
+[data-theme="dark"] .card-body ul li {
+    color: #e9ecef;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+/* Melhorar a visibilidade do botão de conversão */
+[data-theme="dark"] .btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: #fff;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Melhorar a visibilidade do botão Limpar */
+[data-theme="dark"] .btn-outline-secondary {
+    color: #e9ecef;
+    border-color: #6c757d;
+    font-weight: 400;
+}
+
+[data-theme="dark"] .btn-outline-secondary:hover {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+/* Melhorar a visibilidade do texto do input de arquivo */
+[data-theme="dark"] input[type="file"] {
+    color: #e9ecef;
+    background-color: #2b3035;
+    border-color: #495057;
+}
+
+/* Melhorar a visibilidade do texto de tamanho máximo */
+[data-theme="dark"] .form-text {
+    color: #ced4da !important;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+/* Ajustes específicos para o botão do menu no tema escuro */
+[data-theme="dark"] .navbar-light .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Ajustes específicos para os textos mencionados */
+[data-theme="dark"] .form-label {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+}
+
+[data-theme="dark"] .form-check-label {
+    color: #e9ecef;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+[data-theme="dark"] .card-body h6 {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+}
+
+[data-theme="dark"] .card-body p {
+    color: #e9ecef;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Melhorar a visibilidade dos itens da lista de formatos */
+[data-theme="dark"] .card-body ul li {
+    color: #e9ecef;
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+[data-theme="dark"] .card-body ul li strong {
+    color: #fff;
+    font-weight: 600;
 } 
