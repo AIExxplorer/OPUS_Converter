@@ -1,0 +1,64 @@
+<!-- Footer Component -->
+<footer class="mt-5 pt-5 pb-4 border-top">
+    <div class="row">
+        <div class="col-12 col-md-4 mb-4">
+            <h5 class="text-primary">OPUS Converter</h5>
+            <p class="text-muted">Uma ferramenta simples e eficiente para converter arquivos de áudio do formato OPUS para outros formatos populares.</p>
+            <p class="text-muted small">
+                <i class="bi bi-code-slash me-1"></i> Desenvolvido com Python, Flask e FFmpeg
+            </p>
+        </div>
+        
+        <div class="col-6 col-md-4 mb-4">
+            <h5 class="text-primary">Links Úteis</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="{{ url_for('about') }}" class="nav-link p-0 text-muted">
+                    <i class="bi bi-info-circle"></i> Sobre o Projeto
+                </a></li>
+                <li class="nav-item mb-2"><a href="https://opus-codec.org/" target="_blank" class="nav-link p-0 text-muted">
+                    <i class="bi bi-link-45deg"></i> Site Oficial OPUS
+                </a></li>
+                <li class="nav-item mb-2"><a href="https://ffmpeg.org/" target="_blank" class="nav-link p-0 text-muted">
+                    <i class="bi bi-link-45deg"></i> FFmpeg
+                </a></li>
+                <li class="nav-item mb-2"><a href="https://github.com/AIEXXPLERERR/opus-converter" target="_blank" class="nav-link p-0 text-muted">
+                    <i class="bi bi-link-45deg"></i> Repositório GitHub
+                </a></li>
+                <li class="nav-item mb-2"><a href="{{ url_for('static', filename='LICENSE') }}" target="_blank" class="nav-link p-0 text-muted">
+                    <i class="bi bi-file-earmark-text"></i> Termos de Uso
+                </a></li>
+            </ul>
+        </div>
+        
+        <div class="col-6 col-md-4 mb-4">
+            <h5 class="text-primary">Contato</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="mailto:wagner@aiexxplererr.com" class="nav-link p-0 text-muted">
+                    <i class="bi bi-envelope"></i> wagner@aiexxplererr.com
+                </a></li>
+                <li class="nav-item mb-2"><a href="https://github.com/AIEXXPLERERR/opus-converter/issues" target="_blank" class="nav-link p-0 text-muted">
+                    <i class="bi bi-question-circle"></i> Suporte
+                </a></li>
+            </ul>
+            
+            <h5 class="text-primary mt-4">Redes Sociais</h5>
+            <div class="d-flex gap-3 social-icons">
+                <a href="https://github.com/AIEXXPLERERR" target="_blank" class="text-decoration-none" title="AIEXXPLERERR GitHub">
+                    <i class="bi bi-github fs-4"></i>
+                </a>
+                <a href="https://linkedin.com/in/wagner-rafael" target="_blank" class="text-decoration-none" title="Wagner Rafael LinkedIn">
+                    <i class="bi bi-linkedin fs-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+        <p class="text-muted">
+            Copyright &copy; 2025 Wagner Rafael | AIEXXPLERERR &trade;
+        </p>
+        <p class="text-muted">
+            <a href="{{ url_for('static', filename='LICENSE') }}" target="_blank" class="text-decoration-none text-muted">Licença MIT</a>
+        </p>
+    </div>
+</footer> 
