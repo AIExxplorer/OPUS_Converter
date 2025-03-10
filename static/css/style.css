@@ -1,0 +1,204 @@
+/* OPUS Converter - Custom Styles */
+
+body {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+.container {
+    max-width: 1000px;
+}
+
+/* Header styles */
+header h1 {
+    font-weight: 700;
+    color: #0d6efd;
+}
+
+/* Card styles */
+.card {
+    border-radius: 10px;
+    border: none;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Button styles */
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    padding: 10px 20px;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+/* File list styles */
+#fileList {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+}
+
+.file-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 80%;
+}
+
+.file-size {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+/* Results styles */
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
+.result-success {
+    color: #198754;
+}
+
+.result-error {
+    color: #dc3545;
+}
+
+.download-btn {
+    padding: 5px 15px;
+    font-size: 0.875rem;
+}
+
+/* Footer styles */
+footer {
+    background-color: #f8f9fa;
+    margin-top: 3rem !important;
+}
+
+footer h5 {
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+}
+
+footer .nav-link {
+    padding: 0.3rem 0;
+    transition: color 0.2s ease;
+}
+
+footer .nav-link:hover {
+    color: #0d6efd !important;
+}
+
+footer .bi {
+    margin-right: 0.5rem;
+}
+
+footer .social-icons .bi {
+    font-size: 1.5rem;
+    transition: color 0.2s ease;
+}
+
+footer .social-icons a {
+    color: #6c757d;
+}
+
+footer .social-icons a:hover {
+    color: #0d6efd;
+}
+
+footer .border-top {
+    border-top-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .result-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .download-btn {
+        margin-top: 10px;
+        align-self: flex-end;
+    }
+    
+    footer .row > div {
+        margin-bottom: 2rem;
+    }
+}
+
+/* Custom file input styling */
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.custom-file-input::before {
+    content: 'Selecionar arquivos';
+    display: inline-block;
+    background: linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+}
+
+.custom-file-input:hover::before {
+    border-color: black;
+}
+
+.custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+/* Animation for conversion process */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.converting {
+    animation: pulse 1.5s infinite;
+} 
