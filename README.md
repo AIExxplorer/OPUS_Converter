@@ -11,6 +11,9 @@ OPUS Converter é uma aplicação web que permite converter arquivos de áudio d
 - Interface de usuário simples e intuitiva
 - Indicador visual de conversão bem-sucedida
 - Botão de download para cada arquivo convertido
+- Detecção automática de FFmpeg
+- Navegação entre páginas
+- Componentes reutilizáveis
 
 ## Tecnologias Utilizadas
 
@@ -37,7 +40,7 @@ OPUS Converter é uma aplicação web que permite converter arquivos de áudio d
 
 1. Clone o repositório:
 ```
-git clone https://github.com/seu-usuario/opus-converter.git
+git clone https://github.com/AIEXXPLERERR/opus-converter.git
 cd opus-converter
 ```
 
@@ -92,30 +95,61 @@ opus-converter/
 │   │   └── style.css
 │   ├── js/
 │   │   └── main.js
-│   └── img/
+│   ├── img/
+│   │   └── favicon.ico     # Favicon da aplicação
+│   ├── samples/            # Arquivos de exemplo
+│   │   └── README.txt      # Instruções para adicionar amostras
+│   └── LICENSE             # Cópia da licença para acesso web
 │
 ├── templates/              # Templates HTML
-│   ├── index.html
-│   └── result.html
+│   ├── components/         # Componentes reutilizáveis
+│   │   └── footer.html     # Componente de rodapé
+│   ├── index.html          # Página principal
+│   └── about.html          # Página Sobre
 │
 ├── uploads/                # Diretório para arquivos enviados (temporário)
 ├── converted/              # Diretório para arquivos convertidos
 │
 ├── requirements.txt        # Dependências do projeto
 ├── .gitignore              # Configuração do Git
+├── LICENSE                 # Licença do projeto
 └── README.md               # Este arquivo
 ```
+
+## Funcionalidades Adicionais
+
+### Detecção de FFmpeg
+
+A aplicação verifica automaticamente se o FFmpeg está instalado no sistema e exibe um aviso caso não esteja. Isso ajuda os usuários a identificar problemas de configuração antes de tentar converter arquivos.
+
+### Navegação
+
+A aplicação possui uma barra de navegação que permite aos usuários acessar facilmente as diferentes páginas:
+- **Início**: Página principal com o conversor
+- **Sobre**: Informações sobre o projeto e seu desenvolvedor
+
+### Componentes Reutilizáveis
+
+O projeto utiliza componentes reutilizáveis para manter a consistência visual e facilitar a manutenção:
+- **Footer**: Rodapé com informações de copyright, links úteis e redes sociais
 
 ## Limitações Conhecidas
 
 - O tamanho máximo de upload é limitado a 100MB por arquivo
 - Apenas arquivos OPUS são aceitos como entrada
 - A aplicação não é otimizada para conversão de arquivos muito grandes
+- É necessário ter o FFmpeg instalado no sistema para realizar as conversões
 
 ## Contribuições
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
 
+## Autor
+
+- **Wagner Rafael** - Fundador da AIEXXPLERERR™
+- [GitHub](https://github.com/AIEXXPLERERR)
+- [LinkedIn](https://linkedin.com/in/wagner-rafael)
+
 ## Licença
 
-Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE para mais detalhes. 
+Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes. 

@@ -1,0 +1,8 @@
+To create a favicon for the OPUS Converter application:
+
+1. Visit a favicon generator website like https://favicon.io/
+2. Create a simple icon with the letter "O" or a music note
+3. Download the generated favicon.ico file
+4. Place it in this directory (static/img/)
+
+Alternatively, you can use any image editing software to create a 16x16, 32x32, or 64x64 pixel icon and save it as favicon.ico. 
