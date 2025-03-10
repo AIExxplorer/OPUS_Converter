@@ -328,4 +328,178 @@ footer .text-muted {
 
 .converting {
     animation: pulse 1.5s infinite;
+}
+
+/* Melhorias para campos de formulário no tema escuro */
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select {
+    background-color: #2b3035;
+    border-color: #495057;
+    color: #e9ecef;
+}
+
+[data-theme="dark"] .form-control:focus,
+[data-theme="dark"] .form-select:focus {
+    background-color: #2b3035;
+    border-color: #0d6efd;
+    color: #e9ecef;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+[data-theme="dark"] .form-control::placeholder {
+    color: #adb5bd;
+}
+
+[data-theme="dark"] .form-text {
+    color: #adb5bd;
+}
+
+[data-theme="dark"] .form-check-input {
+    background-color: #2b3035;
+    border-color: #495057;
+}
+
+[data-theme="dark"] .form-check-input:checked {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+[data-theme="dark"] .form-check-label {
+    color: #e9ecef;
+}
+
+/* Ajustes para botões no tema escuro */
+[data-theme="dark"] .btn-outline-secondary {
+    color: #adb5bd;
+    border-color: #495057;
+}
+
+[data-theme="dark"] .btn-outline-secondary:hover {
+    color: #e9ecef;
+    background-color: #495057;
+    border-color: #495057;
+}
+
+[data-theme="dark"] .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Ajustes para listas no tema escuro */
+[data-theme="dark"] .list-group-item-warning {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+    border-color: rgba(255, 193, 7, 0.3);
+}
+
+/* Ajustes para inputs de arquivo no tema escuro */
+[data-theme="dark"] input[type="file"]::file-selector-button {
+    background-color: #495057;
+    color: #e9ecef;
+    border-color: #6c757d;
+}
+
+[data-theme="dark"] input[type="file"]:hover::file-selector-button {
+    background-color: #5a6268;
+}
+
+/* Ajustes para o texto de seleção no tema escuro */
+[data-theme="dark"] ::selection {
+    background-color: rgba(13, 110, 253, 0.5);
+    color: #fff;
+}
+
+/* Ajustes para links no tema escuro */
+[data-theme="dark"] a:not(.btn):not(.nav-link) {
+    color: #6ea8fe;
+}
+
+[data-theme="dark"] a:not(.btn):not(.nav-link):hover {
+    color: #8bb9fe;
+}
+
+/* Ajustes para o alerta de aviso no topo */
+[data-theme="dark"] .alert-warning {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: #ffe083;
+    border-color: rgba(255, 193, 7, 0.3);
+}
+
+[data-theme="dark"] .alert-warning .alert-link {
+    color: #ffda6a;
+    text-decoration: underline;
+}
+
+/* Ajustes para o card de informações sobre o projeto */
+[data-theme="dark"] .card-header {
+    background-color: #343a40;
+    border-bottom-color: #495057;
+}
+
+/* Ajustes para listas no tema escuro */
+[data-theme="dark"] ul li {
+    color: #e9ecef;
+}
+
+/* Ajustes para texto muted no tema escuro */
+[data-theme="dark"] .text-muted {
+    color: #adb5bd !important;
+}
+
+/* Ajustes para o modal no tema escuro */
+[data-theme="dark"] .modal-header,
+[data-theme="dark"] .modal-footer {
+    border-color: #495057;
+}
+
+[data-theme="dark"] .modal-header .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Ajustes para o spinner no tema escuro */
+[data-theme="dark"] .spinner-border {
+    border-right-color: transparent;
+}
+
+/* Ajustes para o navbar no tema escuro */
+[data-theme="dark"] .navbar-light .navbar-brand,
+[data-theme="dark"] .navbar-light .navbar-nav .nav-link {
+    color: #e9ecef;
+}
+
+[data-theme="dark"] .navbar-light .navbar-nav .nav-link.active {
+    color: #0d6efd;
+}
+
+[data-theme="dark"] .navbar-light .navbar-toggler-icon {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+[data-theme="dark"] .navbar-light .navbar-toggler {
+    border-color: #495057;
+}
+
+/* Ajustes para o texto de seleção de arquivo no tema escuro */
+[data-theme="dark"] .custom-file-input::before {
+    background: #343a40;
+    border-color: #495057;
+    color: #e9ecef;
+    text-shadow: none;
+}
+
+[data-theme="dark"] .custom-file-input:hover::before {
+    border-color: #6c757d;
+}
+
+/* Ajustes para o texto de descrição dos formatos no tema escuro */
+[data-theme="dark"] .card-body h6 {
+    color: #e9ecef;
+}
+
+[data-theme="dark"] .card-body p {
+    color: #e9ecef;
+}
+
+/* Ajustes para o texto de descrição dos formatos no tema escuro */
+[data-theme="dark"] .card-body ul li strong {
+    color: #e9ecef;
 } 

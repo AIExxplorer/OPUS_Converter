@@ -5,10 +5,37 @@
  * Não realiza conversões reais, apenas simula a interface do usuário.
  */
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Inicialização do tema
-    initTheme();
+// Função para inicializar o tema com base na preferência salva
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
     
+    // Atualizar o ícone do botão de tema
+    updateThemeIcon(savedTheme);
+}
+
+// Função para alternar entre temas claro e escuro
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    
+    // Atualizar o ícone do botão de tema
+    updateThemeIcon(newTheme);
+}
+
+// Função para atualizar o ícone do botão de tema
+function updateThemeIcon(theme) {
+    // Esta função é apenas visual, os ícones são controlados via CSS
+    console.log('Tema atual:', theme);
+}
+
+// Inicializar o tema assim que o script for carregado
+initTheme();
+
+document.addEventListener('DOMContentLoaded', function() {
     // Manipulação de arquivos
     const fileInput = document.getElementById('fileInput');
     const clearButton = document.getElementById('clearButton');
@@ -42,33 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
         uploadForm.addEventListener('submit', function(event) {
             simulateConversion(event);
         });
-    }
-    
-    // Função para inicializar o tema com base na preferência salva
-    function initTheme() {
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        
-        // Atualizar o ícone do botão de tema
-        updateThemeIcon(savedTheme);
-    }
-    
-    // Função para alternar entre temas claro e escuro
-    function toggleTheme() {
-        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        
-        // Atualizar o ícone do botão de tema
-        updateThemeIcon(newTheme);
-    }
-    
-    // Função para atualizar o ícone do botão de tema
-    function updateThemeIcon(theme) {
-        // Esta função é apenas visual, os ícones são controlados via CSS
-        console.log('Tema atual:', theme);
     }
     
     function updateFileList() {
