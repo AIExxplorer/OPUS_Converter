@@ -688,4 +688,26 @@ footer .text-muted {
 [data-theme="dark"] .license-text strong {
     color: #fff;
     font-weight: 600;
+}
+
+/* Ajuste para o título "Sobre o OPUS Converter" na página index */
+.card-header h5.card-title {
+    color: #212529;
+}
+
+[data-theme="dark"] .card-header h5.card-title {
+    color: #fff;
+}
+
+/* Ajustes para títulos nas páginas about e terms */
+.card-body h2,
+.card-body h3,
+.card-body h4 {
+    color: #0d6efd;
+}
+
+[data-theme="dark"] .card-body h2,
+[data-theme="dark"] .card-body h3,
+[data-theme="dark"] .card-body h4 {
+    color: #0d6efd;
 } 
