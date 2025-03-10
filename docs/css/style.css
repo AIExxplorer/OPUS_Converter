@@ -433,6 +433,17 @@ footer .text-muted {
 [data-theme="dark"] .card-header {
     background-color: #343a40;
     border-bottom-color: #495057;
+    color: #fff;
+}
+
+[data-theme="dark"] .card-header h5,
+[data-theme="dark"] .card-header .card-title {
+    color: #fff;
+    font-weight: 600;
+}
+
+[data-theme="dark"] .bg-light {
+    background-color: #343a40 !important;
 }
 
 /* Ajustes para listas no tema escuro */
@@ -648,6 +659,33 @@ footer .text-muted {
 }
 
 [data-theme="dark"] .card-body ul li strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Estilos para a página de termos de uso */
+.license-text {
+    font-family: monospace;
+    white-space: pre-wrap;
+    line-height: 1.5;
+}
+
+/* Ajustes para a página de termos no tema escuro */
+[data-theme="dark"] .license-text {
+    background-color: #2b3035 !important;
+    color: #e9ecef;
+    border-color: #495057 !important;
+}
+
+[data-theme="dark"] .license-text h3 {
+    color: #fff;
+}
+
+[data-theme="dark"] .license-text p {
+    color: #e9ecef;
+}
+
+[data-theme="dark"] .license-text strong {
     color: #fff;
     font-weight: 600;
 } 
