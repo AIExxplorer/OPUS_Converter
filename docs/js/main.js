@@ -6,67 +6,110 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Elementos do DOM
-    const uploadForm = document.getElementById('uploadForm');
+    // Inicialização do tema
+    initTheme();
+    
+    // Manipulação de arquivos
     const fileInput = document.getElementById('fileInput');
     const clearButton = document.getElementById('clearButton');
     const fileList = document.getElementById('fileList');
     const selectedFiles = document.getElementById('selectedFiles');
+    const uploadForm = document.getElementById('uploadForm');
     const resultsCard = document.getElementById('resultsCard');
     const conversionResults = document.getElementById('conversionResults');
+    const themeToggle = document.getElementById('themeToggle');
     
-    // Modais
-    const loadingModal = new bootstrap.Modal(document.getElementById('loadingModal'));
-    const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
-    const errorModalBody = document.getElementById('errorModalBody');
-    
-    /**
-     * Atualiza a lista de arquivos selecionados
-     */
-    function updateFileList() {
-        selectedFiles.innerHTML = '';
-        
-        if (fileInput.files.length === 0) {
-            fileList.classList.add('d-none');
-            return;
-        }
-        
-        fileList.classList.remove('d-none');
-        
-        Array.from(fileInput.files).forEach(file => {
-            const listItem = document.createElement('li');
-            listItem.className = 'list-group-item';
-            
-            // Verificar se é um arquivo OPUS
-            const isOpus = file.name.toLowerCase().endsWith('.opus');
-            
-            // Formatar o tamanho do arquivo
-            const fileSize = formatFileSize(file.size);
-            
-            listItem.innerHTML = `
-                <div class="file-name ${!isOpus ? 'text-danger' : ''}">
-                    ${file.name} ${!isOpus ? '(Formato não suportado)' : ''}
-                </div>
-                <span class="file-size">${fileSize}</span>
-            `;
-            
-            selectedFiles.appendChild(listItem);
+    // Adicionar evento para o botão de alternância de tema
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            toggleTheme();
         });
+    }
+    
+    if (fileInput) {
+        fileInput.addEventListener('change', function() {
+            updateFileList();
+        });
+    }
+    
+    if (clearButton) {
+        clearButton.addEventListener('click', function() {
+            clearFileInput();
+        });
+    }
+    
+    if (uploadForm) {
+        uploadForm.addEventListener('submit', function(event) {
+            simulateConversion(event);
+        });
+    }
+    
+    // Função para inicializar o tema com base na preferência salva
+    function initTheme() {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
         
-        // Verificar se há arquivos não suportados
-        const hasInvalidFiles = Array.from(fileInput.files).some(file => !file.name.toLowerCase().endsWith('.opus'));
+        // Atualizar o ícone do botão de tema
+        updateThemeIcon(savedTheme);
+    }
+    
+    // Função para alternar entre temas claro e escuro
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
         
-        if (hasInvalidFiles) {
-            const alertDiv = document.createElement('div');
-            alertDiv.className = 'alert alert-warning mt-2';
-            alertDiv.innerHTML = 'Alguns arquivos selecionados não são do formato OPUS e serão ignorados.';
-            selectedFiles.appendChild(alertDiv);
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Atualizar o ícone do botão de tema
+        updateThemeIcon(newTheme);
+    }
+    
+    // Função para atualizar o ícone do botão de tema
+    function updateThemeIcon(theme) {
+        // Esta função é apenas visual, os ícones são controlados via CSS
+        console.log('Tema atual:', theme);
+    }
+    
+    function updateFileList() {
+        if (fileInput.files.length > 0) {
+            fileList.classList.remove('d-none');
+            selectedFiles.innerHTML = '';
+            
+            // Limitar a 10 arquivos
+            const maxFiles = Math.min(fileInput.files.length, 10);
+            
+            for (let i = 0; i < maxFiles; i++) {
+                const file = fileInput.files[i];
+                const fileSize = formatFileSize(file.size);
+                
+                const listItem = document.createElement('li');
+                listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+                
+                const fileNameSpan = document.createElement('span');
+                fileNameSpan.className = 'file-name';
+                fileNameSpan.textContent = file.name;
+                
+                const fileSizeSpan = document.createElement('span');
+                fileSizeSpan.className = 'file-size';
+                fileSizeSpan.textContent = fileSize;
+                
+                listItem.appendChild(fileNameSpan);
+                listItem.appendChild(fileSizeSpan);
+                selectedFiles.appendChild(listItem);
+            }
+            
+            if (fileInput.files.length > 10) {
+                const warningItem = document.createElement('li');
+                warningItem.className = 'list-group-item list-group-item-warning';
+                warningItem.textContent = `Apenas os primeiros 10 arquivos serão processados. ${fileInput.files.length - 10} arquivo(s) ignorado(s).`;
+                selectedFiles.appendChild(warningItem);
+            }
+        } else {
+            fileList.classList.add('d-none');
         }
     }
     
-    /**
-     * Formata o tamanho do arquivo para exibição
-     */
     function formatFileSize(bytes) {
         if (bytes === 0) return '0 Bytes';
         
@@ -77,43 +120,23 @@ document.addEventListener('DOMContentLoaded', function() {
         return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
     }
     
-    /**
-     * Limpa a lista de arquivos selecionados
-     */
     function clearFileInput() {
         fileInput.value = '';
-        updateFileList();
+        fileList.classList.add('d-none');
+        selectedFiles.innerHTML = '';
     }
     
-    /**
-     * Simula a conversão de arquivos (versão de demonstração)
-     */
     function simulateConversion(event) {
         event.preventDefault();
         
-        // Verificar se há arquivos selecionados
         if (fileInput.files.length === 0) {
-            showError('Por favor, selecione pelo menos um arquivo OPUS para converter.');
+            showError('Por favor, selecione pelo menos um arquivo para converter.');
             return;
         }
         
-        // Verificar se há mais de 10 arquivos
-        if (fileInput.files.length > 10) {
-            showError('Você pode converter no máximo 10 arquivos por vez.');
-            return;
-        }
-        
-        // Verificar se todos os arquivos são OPUS
-        const validFiles = Array.from(fileInput.files).filter(file => file.name.toLowerCase().endsWith('.opus'));
-        
-        if (validFiles.length === 0) {
-            showError('Nenhum arquivo OPUS válido foi selecionado. Por favor, selecione arquivos com a extensão .opus');
-            return;
-        }
-        
-        // Obter o formato de saída selecionado
+        // Obter o formato selecionado
         const formatRadios = document.getElementsByName('format');
-        let selectedFormat = 'mp3'; // Padrão
+        let selectedFormat = 'mp3';
         
         for (const radio of formatRadios) {
             if (radio.checked) {
@@ -123,116 +146,97 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Mostrar modal de carregamento
+        const loadingModal = new bootstrap.Modal(document.getElementById('loadingModal'));
         loadingModal.show();
         
-        // Simular tempo de processamento
-        setTimeout(() => {
-            // Esconder modal de carregamento
+        // Simular tempo de conversão (2-4 segundos por arquivo)
+        const conversionTime = Math.max(2000, Math.min(fileInput.files.length * 1000, 4000));
+        
+        setTimeout(function() {
             loadingModal.hide();
             
-            // Simular resultados
-            const results = validFiles.map(file => ({
-                original_name: file.name,
-                converted_name: file.name.replace('.opus', '.' + selectedFormat),
-                unique_name: 'demo_' + file.name.replace('.opus', '.' + selectedFormat),
-                success: true
-            }));
+            // Simular resultados da conversão
+            const results = [];
             
-            // Exibir resultados simulados
+            for (let i = 0; i < Math.min(fileInput.files.length, 10); i++) {
+                const file = fileInput.files[i];
+                const success = Math.random() > 0.1; // 90% de chance de sucesso
+                
+                results.push({
+                    fileName: file.name,
+                    success: success,
+                    message: success ? 'Convertido com sucesso' : 'Erro na conversão',
+                    outputFileName: success ? file.name.replace('.opus', '.' + selectedFormat) : null
+                });
+            }
+            
             displayResults(results, selectedFormat);
-        }, 2000); // Simular 2 segundos de processamento
+        }, conversionTime);
     }
     
-    /**
-     * Exibe os resultados da conversão
-     */
     function displayResults(results, format) {
+        resultsCard.classList.remove('d-none');
         conversionResults.innerHTML = '';
         
-        if (results.length === 0) {
-            conversionResults.innerHTML = '<div class="alert alert-info">Nenhum arquivo foi convertido.</div>';
-            resultsCard.classList.remove('d-none');
-            return;
+        const successCount = results.filter(r => r.success).length;
+        const failCount = results.length - successCount;
+        
+        // Adicionar resumo
+        const summaryDiv = document.createElement('div');
+        summaryDiv.className = 'alert ' + (failCount === 0 ? 'alert-success' : 'alert-warning');
+        
+        let summaryText = `<strong>${successCount} de ${results.length} arquivo(s)</strong> convertido(s) com sucesso para ${format.toUpperCase()}.`;
+        
+        if (failCount > 0) {
+            summaryText += ` ${failCount} arquivo(s) não pôde(puderam) ser convertido(s).`;
         }
         
+        summaryDiv.innerHTML = summaryText;
+        conversionResults.appendChild(summaryDiv);
+        
+        // Adicionar detalhes de cada arquivo
         results.forEach(result => {
             const resultItem = document.createElement('div');
             resultItem.className = 'result-item';
             
+            const fileInfo = document.createElement('div');
+            fileInfo.className = 'd-flex flex-column';
+            
+            const fileName = document.createElement('div');
+            fileName.className = 'fw-bold';
+            fileName.textContent = result.fileName;
+            
+            const status = document.createElement('div');
+            status.className = result.success ? 'result-success' : 'result-error';
+            status.innerHTML = `<i class="bi ${result.success ? 'bi-check-circle' : 'bi-x-circle'}"></i> ${result.message}`;
+            
+            fileInfo.appendChild(fileName);
+            fileInfo.appendChild(status);
+            
+            resultItem.appendChild(fileInfo);
+            
             if (result.success) {
-                resultItem.innerHTML = `
-                    <div>
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-check-circle-fill result-success me-2"></i>
-                            <span class="fw-bold">${result.original_name}</span>
-                        </div>
-                        <div class="text-muted small">Convertido para ${format.toUpperCase()} (simulação)</div>
-                    </div>
-                    <button class="btn btn-sm btn-outline-primary download-btn disabled">
-                        <i class="bi bi-download"></i> Baixar (indisponível na demo)
-                    </button>
-                `;
-            } else {
-                resultItem.innerHTML = `
-                    <div>
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-x-circle-fill result-error me-2"></i>
-                            <span class="fw-bold">${result.original_name}</span>
-                        </div>
-                        <div class="text-danger small">${result.error || 'Erro na conversão'}</div>
-                    </div>
-                `;
+                const downloadBtn = document.createElement('button');
+                downloadBtn.className = 'btn btn-sm btn-outline-primary download-btn';
+                downloadBtn.innerHTML = `<i class="bi bi-download"></i> Baixar ${format.toUpperCase()}`;
+                downloadBtn.addEventListener('click', function() {
+                    // Simular download (apenas alerta)
+                    alert(`Em uma versão real, o arquivo ${result.outputFileName} seria baixado agora.`);
+                });
+                
+                resultItem.appendChild(downloadBtn);
             }
             
             conversionResults.appendChild(resultItem);
         });
         
-        // Adicionar nota de demonstração
-        const demoNote = document.createElement('div');
-        demoNote.className = 'alert alert-info mt-3';
-        demoNote.innerHTML = `
-            <strong>Nota:</strong> Esta é uma versão de demonstração. 
-            Para conversão real de arquivos, por favor 
-            <a href="https://github.com/AIEXXPLERERR/opus-converter" target="_blank" class="alert-link">
-                baixe o projeto completo
-            </a> 
-            e execute-o localmente.
-        `;
-        conversionResults.appendChild(demoNote);
-        
-        // Adicionar botão para converter mais arquivos
-        const moreButton = document.createElement('div');
-        moreButton.className = 'text-center mt-3';
-        moreButton.innerHTML = `
-            <button type="button" class="btn btn-outline-secondary" id="convertMoreBtn">
-                <i class="bi bi-plus-circle"></i> Converter mais arquivos
-            </button>
-        `;
-        conversionResults.appendChild(moreButton);
-        
-        // Mostrar card de resultados
-        resultsCard.classList.remove('d-none');
-        
-        // Adicionar evento ao botão de converter mais
-        document.getElementById('convertMoreBtn').addEventListener('click', function() {
-            // Limpar formulário
-            clearFileInput();
-            
-            // Esconder resultados
-            resultsCard.classList.add('d-none');
-        });
+        // Rolar para os resultados
+        resultsCard.scrollIntoView({ behavior: 'smooth' });
     }
     
-    /**
-     * Exibe uma mensagem de erro
-     */
     function showError(message) {
-        errorModalBody.textContent = message;
+        const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+        document.getElementById('errorModalBody').textContent = message;
         errorModal.show();
     }
-    
-    // Event Listeners
-    fileInput.addEventListener('change', updateFileList);
-    clearButton.addEventListener('click', clearFileInput);
-    uploadForm.addEventListener('submit', simulateConversion);
 }); 

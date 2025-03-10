@@ -8,6 +8,7 @@ This directory contains a static demonstration version of the OPUS Converter app
 - File selection and validation
 - Simulated conversion process
 - Responsive design
+- Light/dark theme toggle
 
 ## Full Functionality
 

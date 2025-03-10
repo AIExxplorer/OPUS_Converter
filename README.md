@@ -18,6 +18,7 @@ Uma versão de demonstração estática está disponível em [GitHub Pages](http
 - Detecção automática de FFmpeg
 - Navegação entre páginas
 - Componentes reutilizáveis
+- Alternância entre temas claro e escuro
 
 ## Tecnologias Utilizadas
 
