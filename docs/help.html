@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajuda - OPUS Converter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container py-5">
+        <!-- Barra de navegação -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light rounded mb-4">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <i class="bi bi-music-note-beamed text-primary"></i> OPUS Converter
+                </a>
+                <div class="d-flex align-items-center">
+                    <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema">
+                        <i class="bi bi-moon fs-5"></i>
+                        <i class="bi bi-sun fs-5"></i>
+                    </button>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">
+                                <i class="bi bi-house-door"></i> Início
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">
+                                <i class="bi bi-info-circle"></i> Sobre
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="help.html">
+                                <i class="bi bi-question-circle"></i> Ajuda
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <header class="text-center mb-5">
+            <h1 class="display-4">Ajuda e Suporte</h1>
+            <p class="lead">Guia de instalação e solução de problemas para o OPUS Converter</p>
+        </header>
+
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title">Instalação do FFmpeg</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-warning">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            <strong>Importante:</strong> O OPUS Converter requer o FFmpeg para funcionar. Se você estiver vendo a mensagem <span class="text-danger">"FFmpeg não está instalado ou não está no PATH do sistema"</span>, siga as instruções abaixo.
+                        </div>
+                        
+                        <h3 class="mt-4 mb-3 text-primary">Método 1: Instalação Manual</h3>
+                        <p>Siga estes passos para instalar o FFmpeg manualmente:</p>
+                        
+                        <ol>
+                            <li>
+                                <strong>Baixe o FFmpeg:</strong>
+                                <ul>
+                                    <li>Visite o <a href="https://ffmpeg.org/download.html" target="_blank">site oficial do FFmpeg</a></li>
+                                    <li>Clique em "Windows Builds" na seção "Get packages & executable files"</li>
+                                    <li>Baixe a versão mais recente (geralmente de gyan.dev ou BtbN)</li>
+                                    <li>Escolha a versão "full" ou "essentials" (formato 7z ou zip)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Extraia o arquivo baixado:</strong>
+                                <ul>
+                                    <li>Use o 7-Zip ou a ferramenta de extração do Windows</li>
+                                    <li>Extraia para um local como <code>C:\ffmpeg</code></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Adicione o FFmpeg ao PATH do sistema:</strong>
+                                <ul>
+                                    <li>Clique com o botão direito em "Este PC" ou "Meu Computador" e selecione "Propriedades"</li>
+                                    <li>Clique em "Configurações avançadas do sistema"</li>
+                                    <li>Clique em "Variáveis de ambiente"</li>
+                                    <li>Em "Variáveis do sistema", encontre e selecione "Path", depois clique em "Editar"</li>
+                                    <li>Clique em "Novo" e adicione o caminho para a pasta bin do FFmpeg (ex: <code>C:\ffmpeg\bin</code>)</li>
+                                    <li>Clique em "OK" em todas as janelas para salvar as alterações</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Verifique a instalação:</strong>
+                                <ul>
+                                    <li>Abra um novo Prompt de Comando ou PowerShell</li>
+                                    <li>Digite <code>ffmpeg -version</code> e pressione Enter</li>
+                                    <li>Você deve ver informações sobre a versão do FFmpeg</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        
+                        <h3 class="mt-4 mb-3 text-primary">Método 2: Usando o Chocolatey</h3>
+                        <p>Se você tem o Chocolatey instalado, este é o método mais fácil:</p>
+                        
+                        <ol>
+                            <li>Abra o PowerShell como Administrador</li>
+                            <li>Execute o comando: <code>choco install ffmpeg</code></li>
+                            <li>Verifique a instalação com: <code>ffmpeg -version</code></li>
+                        </ol>
+                        
+                        <h3 class="mt-4 mb-3 text-primary">Método 3: Usando Nossos Scripts</h3>
+                        <p>Fornecemos scripts que podem ajudar a adicionar o FFmpeg ao PATH do sistema:</p>
+                        
+                        <div class="row mt-3">
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Script PowerShell</h5>
+                                        <p class="card-text">Recomendado para usuários do Windows 10/11.</p>
+                                        <ol>
+                                            <li>Baixe o <a href="scripts/add_ffmpeg_to_path.ps1" download>Script PowerShell</a></li>
+                                            <li>Clique com o botão direito no arquivo baixado</li>
+                                            <li>Selecione "Executar com o PowerShell"</li>
+                                            <li>Se solicitado, confirme a execução</li>
+                                            <li>Siga as instruções na tela</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Script Batch</h5>
+                                        <p class="card-text">Alternativa para todos os sistemas Windows.</p>
+                                        <ol>
+                                            <li>Baixe o <a href="scripts/add_ffmpeg_to_path.bat" download>Script Batch</a></li>
+                                            <li>Clique com o botão direito no arquivo baixado</li>
+                                            <li>Selecione "Executar como administrador"</li>
+                                            <li>Siga as instruções na tela</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title">Solução de Problemas Comuns</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="accordion" id="troubleshootingAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        "FFmpeg não está instalado ou não está no PATH do sistema"
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#troubleshootingAccordion">
+                                    <div class="accordion-body">
+                                        <p>Este erro ocorre quando o OPUS Converter não consegue encontrar o FFmpeg no seu sistema. Mesmo que você tenha instalado o FFmpeg, ele precisa estar no PATH do sistema para ser encontrado.</p>
+                                        
+                                        <p><strong>Soluções:</strong></p>
+                                        <ol>
+                                            <li>Verifique se o FFmpeg está instalado corretamente usando o comando <code>ffmpeg -version</code> em um novo terminal</li>
+                                            <li>Use um dos nossos scripts para adicionar o FFmpeg ao PATH automaticamente</li>
+                                            <li>Reinicie o computador após adicionar o FFmpeg ao PATH</li>
+                                            <li>Verifique se o caminho para o executável do FFmpeg está correto (deve apontar para a pasta que contém ffmpeg.exe)</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        "Erro ao converter arquivo: [Errno 2] No such file or directory"
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#troubleshootingAccordion">
+                                    <div class="accordion-body">
+                                        <p>Este erro geralmente ocorre quando o caminho para o arquivo de entrada ou saída contém caracteres especiais ou espaços.</p>
+                                        
+                                        <p><strong>Soluções:</strong></p>
+                                        <ol>
+                                            <li>Renomeie seus arquivos para usar apenas letras, números e underscores (_)</li>
+                                            <li>Evite usar espaços nos nomes dos arquivos</li>
+                                            <li>Mova os arquivos para um diretório com caminho simples (ex: C:\temp)</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        "O arquivo não é um formato OPUS válido"
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#troubleshootingAccordion">
+                                    <div class="accordion-body">
+                                        <p>Este erro ocorre quando você tenta converter um arquivo que não está no formato OPUS ou está corrompido.</p>
+                                        
+                                        <p><strong>Soluções:</strong></p>
+                                        <ol>
+                                            <li>Verifique se o arquivo tem a extensão .opus</li>
+                                            <li>Confirme se o arquivo é realmente um arquivo de áudio OPUS</li>
+                                            <li>Tente obter uma nova cópia do arquivo original</li>
+                                            <li>Use uma ferramenta como o <a href="https://mediaarea.net/en/MediaInfo" target="_blank">MediaInfo</a> para verificar o formato do arquivo</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h5 class="card-title">Precisa de Mais Ajuda?</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Se você ainda está tendo problemas com o OPUS Converter, entre em contato conosco:</p>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-envelope-fill fs-2 text-primary me-3"></i>
+                                    <div>
+                                        <h6 class="mb-1">Email</h6>
+                                        <a href="mailto:aiexxplorer@artificialuniverse.tech">aiexxplorer@artificialuniverse.tech</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-github fs-2 text-primary me-3"></i>
+                                    <div>
+                                        <h6 class="mb-1">GitHub Issues</h6>
+                                        <a href="https://github.com/AIEXXPLERERR/opus-converter/issues" target="_blank">Reportar um problema</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <a href="index.html" class="btn btn-primary">
+                        <i class="bi bi-arrow-left"></i> Voltar para o Conversor
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-5 pt-5 pb-4 border-top">
+            <div class="row">
+                <div class="col-12 col-md-4 mb-4">
+                    <h5 class="text-primary">OPUS Converter</h5>
+                    <p class="text-muted">Uma ferramenta simples e eficiente para converter arquivos de áudio do formato OPUS para outros formatos populares.</p>
+                    <p class="text-muted small">
+                        <i class="bi bi-code-slash me-1"></i> Desenvolvido com Python, Flask e FFmpeg
+                    </p>
+                </div>
+                
+                <div class="col-6 col-md-4 mb-4">
+                    <h5 class="text-primary">Links Úteis</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="about.html" class="nav-link p-0 text-muted">
+                            <i class="bi bi-info-circle"></i> Sobre o Projeto
+                        </a></li>
+                        <li class="nav-item mb-2"><a href="https://opus-codec.org/" target="_blank" class="nav-link p-0 text-muted">
+                            <i class="bi bi-link-45deg"></i> Site Oficial OPUS
+                        </a></li>
+                        <li class="nav-item mb-2"><a href="https://ffmpeg.org/" target="_blank" class="nav-link p-0 text-muted">
+                            <i class="bi bi-link-45deg"></i> FFmpeg
+                        </a></li>
+                        <li class="nav-item mb-2"><a href="https://github.com/AIEXXPLERERR/opus-converter" target="_blank" class="nav-link p-0 text-muted">
+                            <i class="bi bi-link-45deg"></i> Repositório GitHub
+                        </a></li>
+                        <li class="nav-item mb-2"><a href="terms.html" class="nav-link p-0 text-muted">
+                            <i class="bi bi-file-earmark-text"></i> Termos de Uso
+                        </a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-6 col-md-4 mb-4">
+                    <h5 class="text-primary">Contato</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="mailto:aiexxplorer@artificialuniverse.tech" class="nav-link p-0 text-muted">
+                            <i class="bi bi-envelope"></i> aiexxplorer@artificialuniverse.tech
+                        </a></li>
+                        <li class="nav-item mb-2"><a href="https://github.com/AIEXXPLERERR/opus-converter/issues" target="_blank" class="nav-link p-0 text-muted">
+                            <i class="bi bi-question-circle"></i> Suporte
+                        </a></li>
+                    </ul>
+                    
+                    <h5 class="text-primary mt-4">Redes Sociais</h5>
+                    <div class="d-flex gap-3 social-icons">
+                        <a href="https://github.com/AIEXXPLERERR" target="_blank" class="text-decoration-none" title="AIEXXPLERERR GitHub">
+                            <i class="bi bi-github fs-4"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/wagner-rafael" target="_blank" class="text-decoration-none" title="Wagner Rafael LinkedIn">
+                            <i class="bi bi-linkedin fs-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                <p class="text-muted">
+                    Copyright &copy; 2025 Wagner Rafael | AIEXXPLERERR &trade;
+                </p>
+                <p class="text-muted">
+                    <a href="terms.html" class="text-decoration-none text-muted">Licença MIT</a>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Função para inicializar o tema com base na preferência salva
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+
+        // Função para alternar entre temas claro e escuro
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Inicializar o tema
+        initTheme();
+
+        // Adicionar evento para o botão de alternância de tema
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+            }
+        });
+    </script>
+</body>
+</html> 
