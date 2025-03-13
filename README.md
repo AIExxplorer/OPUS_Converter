@@ -151,9 +151,9 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar
 
 ## Autor
 
-- **Wagner Rafael** - Fundador da AIEXXPLERERR™
-- [GitHub](https://github.com/AIEXXPLERERR)
-- [LinkedIn](https://linkedin.com/in/wagner-rafael)
+- **Wagner Rafael** - Fundador da AIExxplorer™
+- [GitHub](https://github.com/AIExxplorer)
+- [LinkedIn](https://linkedin.com/in/AIExxplorer)
 
 ## Licença
 
